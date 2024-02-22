@@ -1,0 +1,9 @@
+// Definición de constantes para las acciones
+export const OBTENER_DOGS = 'OBTENER_DOGS';
+export const OBTENER_TEMPERAMENTOS = 'OBTENER_TEMPERAMENTOS';
+export const OBTENER_INFO_RAZA = 'OBTENER_INFO_RAZA';
+export const FILTRAR_TEMPERAMENTO = 'FILTRAR_TEMPERAMENTO';
+export const FILTRAR_RAZA = 'FILTRAR_RAZA';
+export const ORDENAR_PESO = 'ORDENAR_PESO';
+export const ORDENAR_ALFABETICO = 'ORDENAR_ALFABETICO';
+export const CREAR_DOG = 'CREAR_DOG';
