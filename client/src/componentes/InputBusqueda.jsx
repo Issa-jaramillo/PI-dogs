@@ -14,11 +14,12 @@ function InputBusqueda({ setCurrentPage, temp }) {
   const showtemp = (tem && tem.length) ? tem : temp;
 
   const onSearchChangeTemp = (event) => {
-    setCurrentPage(0);
+   // setCurrentPage(0);
     setSearch(event.target.value);
     dispatch(filteredTemperament(event.target.value));
     // Actualizar la lista de perros después del filtrado
     dispatch(getAllDogs(event.target.value));
+    
   };
   const handleOrderChange = (event) => {
     event.preventDefault();

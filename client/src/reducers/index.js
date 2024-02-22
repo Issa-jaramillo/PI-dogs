@@ -15,7 +15,8 @@ const initialState = {
     todosLosDogs: [],
     temperamentos: [],
     temperamentosFiltrados: [],
-    detalleRaza: []
+    detalleRaza: [],
+    //dogsActuales: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -62,7 +63,8 @@ function rootReducer(state = initialState, action) {
                     return temp.includes(action.payload);
                 }
             });
-
+            console.log('temperamentosFiltrados:', state.temperamentosFiltrados);
+            console.log('dogsFiltrados:', razasFiltradasPorTemp);
             return {
                 ...state,
                 dogsFiltrados: razasFiltradasPorTemp,
@@ -82,15 +84,7 @@ function rootReducer(state = initialState, action) {
               console.log(dogsOrdenadosPorPeso);
                 return {
                   ...state,
-                  dogsFiltrados: [   {
-                    ID: 1,
-                    Nombre: 'Affenpinscher',
-                    Altura: '23 - 29',
-                    Peso: '3 - 6',
-                    Temperamento: 'Stubborn, Curious, Playful, Adventurous, Active, Fun-loving',
-                    Vida: '10 - 12 years',
-                    Imagen: 'BJa4kxc4X'
-                  }]
+                  dogsFiltrados: dogsOrdenadosPorPeso,
                 };
               
 

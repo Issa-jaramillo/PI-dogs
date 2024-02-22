@@ -2,22 +2,30 @@ import React, { useEffect, useState } from 'react';
 import DogsCard from './DogsCard';
 
 function Paginado({ arraydogs }) {
-  const [animationClass, setAnimationClass] = useState('Paginado');
+  //const [animationClass, setAnimationClass] = useState('Paginado');
   const [currentPage, setCurrentPage] = useState(0);
-  const dogsPerPage = 8;
+  const dogsPorPage = 8;
 
-  useEffect(() => {
-   // ('Fetching data:', arraydogs);
+  // useEffect(() => {
+  //  // ('Fetching data:', arraydogs);
 
-    const timer = setTimeout(() => {
-      setAnimationClass('Paginado');
-    }, 500);
+  //   const timer = setTimeout(() => {
+  //     setAnimationClass('Paginado');
+  //   }, 500);
 
-    return () => clearTimeout(timer);
-  }, [arraydogs]);
-  const startIndex = currentPage * dogsPerPage;
-  const endIndex = startIndex + dogsPerPage;
+  //   return () => clearTimeout(timer);
+  // }, [arraydogs]);
+ 
+
+
+
+  const startIndex = currentPage * dogsPorPage;
+  const endIndex = startIndex + dogsPorPage;
   const dogsToDisplay = arraydogs.slice(startIndex, endIndex);
+
+console.log('Prop arraydogs:', arraydogs);
+
+console.log('Longitud de dogsToDisplay:', dogsToDisplay.length);
 
 
   return (
@@ -34,14 +42,16 @@ function Paginado({ arraydogs }) {
               pesomax={elemento.Peso.split(' - ')[1]}
               temperamentos={elemento.Temperamento}
               imagen={elemento.Imagen}
+              
             />
           </div>
+          
         ))
       ) : (
         <p>No hay perros</p>
       )}
 
-    
+  
     </>
   );
 }

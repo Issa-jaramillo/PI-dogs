@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllDogs, getTemperaments, filterRaza } from '../actions/actions.js';
+import { getAllDogs, getTemperaments, filterRaza, getDogsByName } from '../actions/actions.js';
 import InputBusqueda from './InputBusqueda.jsx';
 import Paginado from "./Paginado.jsx";
 import SearchBar from "./SearchBar.jsx";
@@ -13,10 +13,12 @@ function Homepage() {
   const stateTemperaments = useSelector((state) => state.temperamentos);
   const dispatch = useDispatch();
 console.log(filteredDogs);
+
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
+    console.log('ejecutado usefect');
     const fetchData = async () => {
       try {
         await dispatch(getAllDogs(filterRaza));
@@ -31,9 +33,9 @@ console.log(filteredDogs);
 
   const displayedDogs = search === '' ? allDogs : filteredDogs;
 
-  const numberOfDogsPerPage = 8;
-  const startIndex = currentPage * numberOfDogsPerPage;
-  const endIndex = startIndex + numberOfDogsPerPage;
+  const numberOfDogsPorPage = 8;
+  const startIndex = currentPage * numberOfDogsPorPage;
+  const endIndex = startIndex + numberOfDogsPorPage;
   const dogsToDisplay = displayedDogs.slice(startIndex, endIndex);
 
   const nextPage = () => {
@@ -51,20 +53,23 @@ console.log(filteredDogs);
   const handleSearch = async (value) => {
     console.log(value);
     setSearch(value);
-   // setCurrentPage(0); // Restablece la página actual al realizar una nueva búsqueda
+   setCurrentPage(0); // Restablece la página actual al realizar una nueva búsqueda
     try {
-      await dispatch(getAllDogs(value));
+      await dispatch(filteredDogs(value));
     } catch (error) {
       console.error('Error en la búsqueda de perros:', error);
     }
   };
   
 
-  const handleSearchNombreRaza = (nombreRaza) => {
-console.log(nombreRaza);
+
+  const handleSearchName = (nombreRaza) => {
     setCurrentPage(0);
-    dispatch(getAllDogs(nombreRaza));
+    dispatch(getDogsByName(nombreRaza));
   };
+  console.log('filteredDogs:', filteredDogs);
+console.log('displayedDogs:', displayedDogs);
+
 
   return (
     <div className="Homepage">
@@ -74,13 +79,22 @@ console.log(nombreRaza);
         <button onClick={nextPage} disabled={endIndex >= displayedDogs.length}>Siguiente</button>
       </div>
   
-      {(search && filteredDogs.length < 1) || (!search && allDogs.length < 1) ? (
+      {(search && filteredDogs.length < 0) || (!search && allDogs.length < 0)  ? (
         <p>No se encontraron resultados.</p>
+        
       ) : (
+        
         <>
-          <InputBusqueda setCurrentPage={setCurrentPage} setSearch={setSearch} temp={stateTemperaments} />
-          <SearchBar  onSearchNombreRaza={handleSearchNombreRaza} />
+          <SearchBar  onSearch={handleSearchName}  />
+          
+          <InputBusqueda  temp={stateTemperaments} onSearch={handleSearch}  setCurrentPage={setCurrentPage}  />
+
           <Paginado arraydogs={dogsToDisplay} />
+        
+          
+        
+     
+          
         </>
      
       )}

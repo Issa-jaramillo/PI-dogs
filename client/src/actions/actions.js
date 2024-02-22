@@ -10,19 +10,15 @@ import {
   ORDENAR_ALFABETICO
 } from './actionsTypes';
 
+
+
 const apiUrl = 'http://localhost:3001';
 
-export function getAllDogs(dogname) {
-  
+// Obtener todos los perros
+export function getAllDogs() {
   return async function (dispatch) {
     try {
-      let url = `${apiUrl}/dogs`;
-
-      if (dogname) {
-        url += `?name=${dogname}`;
-      }
-
-      const response = await fetch(url);
+      const response = await fetch(`${apiUrl}/dogs`);
 
       if (!response.ok) {
         throw new Error(`Error en la solicitud: ${response.statusText}`);
@@ -36,7 +32,28 @@ export function getAllDogs(dogname) {
       dispatch({ type: OBTENER_DOGS, payload: error });
     }
   };
+}
 
+// Obtener perros por nombre
+export function getDogsByName(dogname) {
+  return async function (dispatch) {
+    try {
+      let url = `${apiUrl}/dogs/name?Name=${dogname}`;
+      
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.statusText}`);
+      }
+
+      const json = await response.json();
+
+      dispatch({ type: OBTENER_DOGS, payload: json });
+    } catch (error) {
+      console.error('Error al obtener las razas de perros por nombre:', error);
+      dispatch({ type: OBTENER_DOGS, payload: error });
+    }
+  };
 }
   
 
