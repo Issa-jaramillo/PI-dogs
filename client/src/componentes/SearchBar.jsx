@@ -25,6 +25,7 @@ const SearchBar = ({ onSearch, onSearchName }) => {
     setName('');
   };
 
+
   return (
     <div>
       {/* Input para búsqueda por nombre de raza */}
@@ -38,6 +39,9 @@ const SearchBar = ({ onSearch, onSearchName }) => {
   
       {/* Botón para iniciar la búsqueda */}
       <button onClick={search}>Buscar perro</button>
+
+     
+     
     </div>
   );
 };

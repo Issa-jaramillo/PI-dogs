@@ -1,0 +1,24 @@
+
+
+.container {
+    text-align: center;
+    margin-top: 50px; /* Ajusta el margen superior según tus preferencias */
+  }
+  
+  .heading {
+    font-size: 24px;
+    color: #333; /* Color del texto, puedes cambiarlo según tus preferencias */
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Color de fondo del botón, puedes cambiarlo según tus preferencias */
+    color: white; /* Color del texto del botón, puedes cambiarlo según tus preferencias */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Ajusta el radio de borde según tus preferencias */
+  }
+  
+  /* Puedes agregar más estilos según tus necesidades */
+  

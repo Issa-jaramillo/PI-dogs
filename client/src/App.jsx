@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Inicio from './componentes/Inicio';
+import Inicio from './componentes/inicio/Inicio'
 import HomePage from './componentes/HomePage';
 import CreateDog from './componentes/CreateDog';
 import DogDetail from './componentes/DogDetail';

@@ -18,7 +18,7 @@ function InputBusqueda({ setCurrentPage, temp }) {
     setSearch(event.target.value);
     dispatch(filteredTemperament(event.target.value));
     // Actualizar la lista de perros después del filtrado
-    dispatch(getAllDogs(event.target.value));
+   // dispatch(getAllDogs(event.target.value));
     
   };
   const handleOrderChange = (event) => {
@@ -30,10 +30,10 @@ function InputBusqueda({ setCurrentPage, temp }) {
       dispatch(organizarPorPeso(selectedOption));
     } else {
       dispatch(organizarAlfabeticamente(selectedOption));
-     // console.log( selectedOption);
+      //console.log( 'error ordenando por peso');
   
       // Actualizar la lista de perros después de la ordenación
-      dispatch(getAllDogs(search));
+      //dispatch(getAllDogs(search));
     }
   };
   

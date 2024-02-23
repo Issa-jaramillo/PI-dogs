@@ -42,15 +42,15 @@ function rootReducer(state = initialState, action) {
                 detalleRaza: action.payload || [], // Si no hay datos, establecer como un array vacío
             };
 
-        // case FILTRAR_RAZA:
-        //     // Acción para filtrar temperamentos únicos
-        //     const temperamentosUnicos = [...new Set(state.todosLosDogs.map(e => e.Temperamento).flat())];
-        //     const temperamentosFiltrados = state.temperamentos.filter(e => temperamentosUnicos.includes(e.Nombre));
+        case FILTRAR_RAZA:
+            // Acción para filtrar temperamentos únicos
+            const temperamentosUnicos = [...new Set(state.todosLosDogs.map(e => e.Temperamento).flat())];
+            const temperamentosFiltrados = state.temperamentos.filter(e => temperamentosUnicos.includes(e.Nombre));
 
-        //     return {
-        //         ...state,
-        //         temperamentosFiltrados,
-        //     };
+            return {
+                ...state,
+                temperamentosFiltrados,
+            };
    
             case FILTRAR_TEMPERAMENTO:
                 const razasFiltradasPorTemp = state.todosLosDogs.filter((e) => {
@@ -95,12 +95,13 @@ function rootReducer(state = initialState, action) {
               
                   return action.payload === 'az' ? nombreA.localeCompare(nombreB) : nombreB.localeCompare(nombreA);
                 });
-              
+              console.log(nuevoOrdenAlfabetico);
+              console.log(state);
                 return {
                   ...state,
                   todosLosDogs: nuevoOrdenAlfabetico,
                 };
-              
+           
               
 
 

@@ -37,6 +37,8 @@ function Homepage() {
   const startIndex = currentPage * numberOfDogsPorPage;
   const endIndex = startIndex + numberOfDogsPorPage;
   const dogsToDisplay = displayedDogs.slice(startIndex, endIndex);
+  //console.log('displayedDogs:', displayedDogs);
+
 
   const nextPage = () => {
     if (endIndex < displayedDogs.length) {
@@ -51,7 +53,7 @@ function Homepage() {
   };
 
   const handleSearch = async (value) => {
-    console.log(value);
+   // console.log(value);
     setSearch(value);
    setCurrentPage(0); // Restablece la página actual al realizar una nueva búsqueda
     try {
@@ -79,7 +81,7 @@ function Homepage() {
         <button onClick={nextPage} disabled={endIndex >= displayedDogs.length}>Siguiente</button>
       </div>
   
-      {(search && filteredDogs.length < 0) || (!search && allDogs.length < 0)  ? (
+      {(search && filteredDogs.length < 1) || (!search && allDogs.length <  1)  ? (
         <p>No se encontraron resultados.</p>
         
       ) : (
