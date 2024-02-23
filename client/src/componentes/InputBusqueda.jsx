@@ -25,12 +25,12 @@ function InputBusqueda({ setCurrentPage, temp }) {
     event.preventDefault();
     setCurrentPage(0);
     const selectedOption = event.target.value;
-  console.log(selectedOption);
+//  console.log(selectedOption);
     if (selectedOption === 'asc' || selectedOption === 'des') {
       dispatch(organizarPorPeso(selectedOption));
     } else {
       dispatch(organizarAlfabeticamente(selectedOption));
-      console.log( selectedOption);
+     // console.log( selectedOption);
   
       // Actualizar la lista de perros después de la ordenación
       dispatch(getAllDogs(search));

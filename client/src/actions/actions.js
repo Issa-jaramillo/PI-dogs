@@ -99,12 +99,12 @@ export function filteredTemperament(temperamento) {
   return { type: FILTRAR_TEMPERAMENTO, payload: temperamento };
 }
 
-export function filterRaza() {
-  return { type: FILTRAR_RAZA };
-}
+// export function filterRaza() {
+//   return { type: FILTRAR_RAZA };
+// }
 
 export function organizarPorPeso(opcionPeso) {
-  console.log('esta funcion a sido llamada' , opcionPeso);
+ // console.log('esta funcion a sido llamada' , opcionPeso);
   return { type: ORDENAR_PESO, payload: opcionPeso };
 }
 
@@ -122,23 +122,24 @@ export function createDog(attributesDog) {
 }
 
 export function organizarAlfabeticamente(optionAlfab) {
-  return async function (dispatch, getState) {
-    const { todosLosDogs, dogsFiltrados } = getState();
-
-    let dogsToOrder = todosLosDogs;
-    if (dogsFiltrados.length > 0) {
-      dogsToOrder = dogsFiltrados;
-    }
-
-    const orderedDogs = [...dogsToOrder].sort((a, b) => {
-      if (optionAlfab === 'az') {
-        return a.Nombre.localeCompare(b.Nombre);
-      } else if (optionAlfab === 'za') {
-        return b.Nombre.localeCompare(a.Nombre);
-      }
-      return 0;
-    });
-
-    dispatch({ type: ORDENAR_ALFABETICO, payload: orderedDogs });
-  };
+  return { type:ORDENAR_ALFABETICO, payload: optionAlfab };
 }
+// return async function (dispatch, getState) {
+//   const { todosLosDogs, dogsFiltrados } = getState();
+
+//   let dogsToOrder = todosLosDogs;
+//   if (dogsFiltrados.length > 0) {
+//     dogsToOrder = dogsFiltrados;
+//   }
+
+//   const orderedDogs = [...dogsToOrder].sort((a, b) => {
+//     if (optionAlfab === 'az') {
+//       return a.Nombre.localeCompare(b.Nombre);
+//     } else if (optionAlfab === 'za') {
+//       return b.Nombre.localeCompare(a.Nombre);
+//     }
+//     return 0;
+//   });
+
+//   dispatch({ type: ORDENAR_ALFABETICO, payload: orderedDogs });
+// };

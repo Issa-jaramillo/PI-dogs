@@ -16,7 +16,7 @@ const initialState = {
     temperamentos: [],
     temperamentosFiltrados: [],
     detalleRaza: [],
-    //dogsActuales: [],
+   // dogsActuales: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -42,69 +42,66 @@ function rootReducer(state = initialState, action) {
                 detalleRaza: action.payload || [], // Si no hay datos, establecer como un array vacío
             };
 
-        case FILTRAR_RAZA:
-            // Acción para filtrar temperamentos únicos
-            const temperamentosUnicos = [...new Set(state.todosLosDogs.map(e => e.Temperamento).flat())];
-            const temperamentosFiltrados = state.temperamentos.filter(e => temperamentosUnicos.includes(e.Nombre));
+        // case FILTRAR_RAZA:
+        //     // Acción para filtrar temperamentos únicos
+        //     const temperamentosUnicos = [...new Set(state.todosLosDogs.map(e => e.Temperamento).flat())];
+        //     const temperamentosFiltrados = state.temperamentos.filter(e => temperamentosUnicos.includes(e.Nombre));
 
-            return {
-                ...state,
-                temperamentosFiltrados,
-            };
-
-        case FILTRAR_TEMPERAMENTO:
-            // Acción para filtrar razas por temperamento
-            const razasFiltradasPorTemp = state.todosLosDogs.filter((e) => {
-                if (typeof (e.Temperamento) === 'string') {
-                    return e.Temperamento.includes(action.payload);
-                }
-                if (Array.isArray(e.Temperamento)) {
-                    let temp = e.Temperamento.map(e => e.Nombre);
-                    return temp.includes(action.payload);
-                }
-            });
-            console.log('temperamentosFiltrados:', state.temperamentosFiltrados);
-            console.log('dogsFiltrados:', razasFiltradasPorTemp);
-            return {
-                ...state,
-                dogsFiltrados: razasFiltradasPorTemp,
-            };
-             
-            case ORDENAR_PESO:
-                console.log(state);
-                console.log(action.payload);
-                const dogsOrdenadosPorPeso = [...state.dogsFiltrados];
-           
-                dogsOrdenadosPorPeso.sort((a, b) => {
-                  const pesoA = a.PesoMin || a.PesoMax;
-                  const pesoB = b.PesoMin || b.PesoMax;
-              
-                  return action.payload === 'asc' ? pesoA - pesoB : pesoB - pesoA;
+        //     return {
+        //         ...state,
+        //         temperamentosFiltrados,
+        //     };
+   
+            case FILTRAR_TEMPERAMENTO:
+                const razasFiltradasPorTemp = state.todosLosDogs.filter((e) => {
+                    if (Array.isArray(e.Temperamento)) {
+                        let temp = e.Temperamento.map(e => e.Nombre);
+                        return temp.includes(action.payload);
+                    } else if (typeof (e.Temperamento) === 'string') {
+                        return e.Temperamento.includes(action.payload);
+                    }
+                    return false;
                 });
-              console.log(dogsOrdenadosPorPeso);
+          
+                return {
+                    ...state,
+                    todosLosDogs: razasFiltradasPorTemp,
+            };
+            
+
+
+            
+            case ORDENAR_PESO:
+            const nuevoOrden = state.todosLosDogs.slice().sort((a, b) => {
+            const pesoA = parseInt(a.Peso.split(' - ')[0]);
+             const pesoB = parseInt(b.Peso.split(' - ')[0]);
+            return action.payload === 'asc' ? pesoA - pesoB : pesoB - pesoA;
+            });
+
+             return {
+                ...state,
+             todosLosDogs: nuevoOrden,
+             };
+            
+              
+            
+            
+            
+             case ORDENAR_ALFABETICO:
+              
+                const nuevoOrdenAlfabetico = state.todosLosDogs.slice().sort((a, b) => {
+                  const nombreA = a.Nombre || '';
+                  const nombreB = b.Nombre || '';
+              
+                  return action.payload === 'az' ? nombreA.localeCompare(nombreB) : nombreB.localeCompare(nombreA);
+                });
+              
                 return {
                   ...state,
-                  dogsFiltrados: dogsOrdenadosPorPeso,
+                  todosLosDogs: nuevoOrdenAlfabetico,
                 };
               
-
-        case ORDENAR_ALFABETICO:
-      // Acción para ordenar alfabéticamente ascendente o descendente
-const dogsOrdenadosPorNombre = [...(state.dogsFiltrados ?? state.todosLosDogs)];
-
-dogsOrdenadosPorNombre.sort((a, b) => {
-    // Proporcionar un valor predeterminado (cadena vacía) si a.Nombre o b.Nombre es undefined
-    const nombreA = a.Nombre || '';
-    const nombreB = b.Nombre || '';
-
-    // Comparar y ordenar alfabéticamente según la opción seleccionada
-    return action.payload === 'az' ? nombreA.localeCompare(nombreB) : nombreB.localeCompare(nombreA);
-});
-
-return {
-    ...state,
-    dogsFiltrados: dogsOrdenadosPorNombre,
-};
+              
 
 
             case CREAR_DOG:

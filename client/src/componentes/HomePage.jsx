@@ -12,13 +12,13 @@ function Homepage() {
   const filteredDogs = useSelector((state) => state.dogsFiltrados);
   const stateTemperaments = useSelector((state) => state.temperamentos);
   const dispatch = useDispatch();
-console.log(filteredDogs);
+//console.log(filteredDogs);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    console.log('ejecutado usefect');
+    //console.log('ejecutado usefect');
     const fetchData = async () => {
       try {
         await dispatch(getAllDogs(filterRaza));
@@ -67,8 +67,8 @@ console.log(filteredDogs);
     setCurrentPage(0);
     dispatch(getDogsByName(nombreRaza));
   };
-  console.log('filteredDogs:', filteredDogs);
-console.log('displayedDogs:', displayedDogs);
+  //console.log('filteredDogs:', filteredDogs);
+//console.log('displayedDogs:', displayedDogs);
 
 
   return (

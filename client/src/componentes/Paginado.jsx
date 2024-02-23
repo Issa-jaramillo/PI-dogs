@@ -23,9 +23,9 @@ function Paginado({ arraydogs }) {
   const endIndex = startIndex + dogsPorPage;
   const dogsToDisplay = arraydogs.slice(startIndex, endIndex);
 
-console.log('Prop arraydogs:', arraydogs);
+//console.log('Prop arraydogs:', arraydogs);
 
-console.log('Longitud de dogsToDisplay:', dogsToDisplay.length);
+//console.log('Longitud de dogsToDisplay:', dogsToDisplay.length);
 
 
   return (
