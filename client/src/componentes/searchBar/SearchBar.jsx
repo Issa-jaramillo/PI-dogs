@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-
+import styles from  "./search.module.css";
 
 const SearchBar = ({ onSearch, onSearchName }) => {
   const [name, setName] = useState('');
@@ -13,31 +12,24 @@ const SearchBar = ({ onSearch, onSearchName }) => {
     }
 
     // Si se proporciona un valor en el campo de búsqueda de raza, usarlo
-    if (name.trim() !== '') {
+    if (name.trim() !== '') 
       onSearch(name);
-    } else {
-      // De lo contrario, usar el valor del campo de búsqueda principal
-      onSearch(raza);
-    }
-
+  
     // Limpiar los campos después de la búsqueda
-   
     setName('');
   };
 
 
   return (
-    <div>
-      {/* Input para búsqueda por nombre de raza */}
+    <div className={styles.SearchBarContainer}>
+ 
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Buscar por Nombre de Raza"
+        placeholder="Nombre de Raza"
       />
 
-  
-      {/* Botón para iniciar la búsqueda */}
       <button onClick={search}>Buscar perro</button>
 
      

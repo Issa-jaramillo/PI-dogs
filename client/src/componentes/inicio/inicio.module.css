@@ -1,24 +1,20 @@
-
-
 .container {
+    text-align:left; 
+    position: absolute;
+    top: 30%;
+    left: 30%; 
+    transform: translate(-50%, -50%);
     text-align: center;
-    margin-top: 50px; /* Ajusta el margen superior según tus preferencias */
-  }
-  
-  .heading {
-    font-size: 24px;
-    color: #333; /* Color del texto, puedes cambiarlo según tus preferencias */
-  }
-  
-  .button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50; /* Color de fondo del botón, puedes cambiarlo según tus preferencias */
-    color: white; /* Color del texto del botón, puedes cambiarlo según tus preferencias */
-    border: none;
-    cursor: pointer;
-    border-radius: 5px; /* Ajusta el radio de borde según tus preferencias */
-  }
-  
-  /* Puedes agregar más estilos según tus necesidades */
-  
+    color: #83593b; 
+}
+
+.heading {
+    font-size: 40px; 
+    margin-bottom: 5px; 
+}
+
+.button {
+    font-size: 30px; 
+    padding: 10px 20px; 
+    margin-left: 10px; 
+}

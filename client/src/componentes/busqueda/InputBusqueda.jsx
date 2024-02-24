@@ -1,45 +1,52 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllDogs, filteredTemperament, organizarPorPeso, organizarAlfabeticamente } from '../actions/actions';
+import { getAllDogs, filteredTemperament, organizarPorPeso, organizarAlfabeticamente } from '../../actions/actions';
+import styles from './input.module.css';
+
 
 function InputBusqueda({ setCurrentPage, temp }) {
+  
   const dispatch = useDispatch();
+
+//otengo los datos del estado de redux usando useSelector   
   const razas = useSelector((state) => state.todosLosDogs);
   const razasfiltradas = useSelector((state) => state.dogsFiltrados);
   const tem = useSelector((state) => state.temperamentosFiltrados);
 
+
+//estado local para el valor del input busqueda 
   const [search, setSearch] = useState('');
 
+//determinar que datos mostrar segun si Hay filtros aplicados  
   const showraza = (razasfiltradas && razasfiltradas.length) ? razasfiltradas : razas;
   const showtemp = (tem && tem.length) ? tem : temp;
 
+//maneja cambios en el input de busqueda de temperamento  
   const onSearchChangeTemp = (event) => {
    // setCurrentPage(0);
     setSearch(event.target.value);
-    dispatch(filteredTemperament(event.target.value));
-    // Actualizar la lista de perros después del filtrado
-   // dispatch(getAllDogs(event.target.value));
-    
+    dispatch(filteredTemperament(event.target.value));    
   };
+
+
+
+//manejo de cambios en el selector de orden
   const handleOrderChange = (event) => {
     event.preventDefault();
     setCurrentPage(0);
     const selectedOption = event.target.value;
-//  console.log(selectedOption);
+
+//despacHa la accion correspondiente segun la opcion seleccionada    
     if (selectedOption === 'asc' || selectedOption === 'des') {
       dispatch(organizarPorPeso(selectedOption));
     } else {
       dispatch(organizarAlfabeticamente(selectedOption));
-      //console.log( 'error ordenando por peso');
-  
-      // Actualizar la lista de perros después de la ordenación
-      //dispatch(getAllDogs(search));
     }
   };
   
 
   return (
-    <div className="InputBusqueda">
+    <div className={styles.InputBusqueda}>
       <select name="ordenar" onChange={handleOrderChange}>
         <option value="">Ordenar</option>
         <option value="asc">Peso Ascendente</option>

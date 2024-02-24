@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 function Navbar({ title }) {
-    // La función toma un parámetro 'title' que se usará para mostrar el título en la barra de navegación
+
     return (
         <div>  
             <h1>{title}</h1>

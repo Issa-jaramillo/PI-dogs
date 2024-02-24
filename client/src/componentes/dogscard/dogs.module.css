@@ -1,0 +1,25 @@
+
+.Card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    box-sizing: border-box;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+
+}
+
+.imageDog img {
+    width: 80%;
+    height: auto; 
+}
+
+.linkStyle {
+    
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}

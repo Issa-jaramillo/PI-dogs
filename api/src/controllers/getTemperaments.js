@@ -6,7 +6,7 @@
  const temperaments = async (req, res)=>{
    
         try {
-            // Obtener los temperamentos de la API
+        
             const response = await axios.get('https://api.thedogapi.com/v1/breeds', {
                 headers: {
                     'x-api-key': API_KEY,
@@ -15,7 +15,7 @@
     
             const temperamentsFromAPI = response.data
                 .map((dog) => dog.temperament)
-                .filter((temperament) => typeof temperament === 'string') // Filtrar solo las temperamentos que son strings
+                .filter((temperament) => typeof temperament === 'string') 
                 .map((temperament) => temperament.split(', '))
                 .flat();
     

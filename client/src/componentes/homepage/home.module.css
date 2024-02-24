@@ -1,0 +1,27 @@
+/* home.module.css */
+
+.botonesPaginadoDispel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Puedes ajustar este valor según sea necesario */
+  }
+  
+  .botonesPaginadoDispel a,
+  .botonesPaginadoDispel button {
+    margin: 0 10px; /* Espaciado entre los enlaces y botones */
+    padding: 10px 15px;
+    background-color: #3498db; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .botonesPaginadoDispel a:hover,
+  .botonesPaginadoDispel button:hover {
+    background-color: #2980b9; /* Cambia el color de fondo al pasar el ratón por encima */
+  }
+  

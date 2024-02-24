@@ -1,39 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import DogsCard from './DogsCard';
+import DogsCard from '../dogscard/DogsCard';
+import styles from './paginado.module.css';
 
 function Paginado({ arraydogs }) {
-  //const [animationClass, setAnimationClass] = useState('Paginado');
+
+//estado para almacenar el numero de la pagina actual
   const [currentPage, setCurrentPage] = useState(0);
+
+//numero de perros a mostrar por pagina 
   const dogsPorPage = 8;
 
-  // useEffect(() => {
-  //  // ('Fetching data:', arraydogs);
-
-  //   const timer = setTimeout(() => {
-  //     setAnimationClass('Paginado');
-  //   }, 500);
-
-  //   return () => clearTimeout(timer);
-  // }, [arraydogs]);
  
-
-
-
+//calculo de indices de inicio y fin para los perros a mostrar en la pagina actual
   const startIndex = currentPage * dogsPorPage;
   const endIndex = startIndex + dogsPorPage;
+
+ //array que contiene los perros a mostrar en la pagina actual 
   const dogsToDisplay = arraydogs.slice(startIndex, endIndex);
 
-//console.log('Prop arraydogs:', arraydogs);
-
-//console.log('Longitud de dogsToDisplay:', dogsToDisplay.length);
 
 
+//renderizacion del componente
   return (
-    <>
+    <div className={styles.cardsContainer}>  
       {dogsToDisplay && dogsToDisplay.length > 0 ? (
+        
         dogsToDisplay.map((elemento) => (
           <div key={elemento.ID}>
-            <div className='glass-div2'></div>
             <div className='glass-div'></div>
             <DogsCard
               id={elemento.ID}
@@ -52,7 +45,7 @@ function Paginado({ arraydogs }) {
       )}
 
   
-    </>
+      </div>
   );
 }
 
