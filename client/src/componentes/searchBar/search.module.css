@@ -1,21 +1,20 @@
 
-
 .SearchBarContainer {
-    display: flex;
-    align-items: center;
-    margin-left: 800px; 
-  }
-  
-  .SearchInput {
-    width: 400px; 
-    padding: 10px;
-    font-size: 20px; 
-  }
-  
-  .SearchButton {
-    margin-left: 10px; 
-    padding: 10px;
-    font-size: 20px; 
-    cursor: pointer;
-  }
-  
+  display: flex;
+  align-items: center;
+  margin-right: 150px; 
+}
+
+.SearchInput {
+  width: 200px;
+  padding: 9px;
+  font-size: 17px;
+  border-radius: 10px; 
+}
+
+.SearchButton {
+  padding: 9px;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 9px; 
+}

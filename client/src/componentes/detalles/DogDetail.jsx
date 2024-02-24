@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";  
 import { getDetail } from "../../actions/actions";
 import { useDispatch, useSelector } from "react-redux";
+import NavBar from '../Navbar';
 
 import styles from './detail.module.css';
 
@@ -10,17 +11,17 @@ function DetailPage() {
 
 //obtiene el parametro de la url 
   const { idRaza } = useParams();
-  const dogId = idRaza;  //corrigo el nombre de la variable para mayor claridad  
+  const dogId = idRaza;   
 
   const stateraza = useSelector((state) => state.detalleRaza);
   const dispatch = useDispatch();
 
-// estado para almacenar la URL de la imagen  
+
   const [imagenUrl, setImagenUrl] = useState('');
 
 
 
-//obtiene la imagen del perro de una API externa usando axios 
+
   const fetchDogImagen = async () => {
     try {
 //realizar una solicitud GET a la api de dog con el ID de la raza       
@@ -45,7 +46,8 @@ function DetailPage() {
   }, [dispatch, idRaza]);
 
   return (
-    
+    <div > 
+ 
     <div className={`${styles.Card} ${styles.linkStyle}`}>
 
    
@@ -61,9 +63,12 @@ function DetailPage() {
           <div >
             <div className={styles.imageDog}><img src={imagenUrl} alt={`Imagen de ${e.Nombre}`} /></div>
           </div>
+          <NavBar></NavBar>
           <div className="contenedor-glass-detail"></div>
         </div>
+        
       ))}
+    </div>
     </div>
   );
 }

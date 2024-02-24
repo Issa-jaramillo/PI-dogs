@@ -8,17 +8,22 @@
     box-sizing: border-box;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.5s;
+    transition: transform 0.5s, background-color 0.3s ease;
+    background-color: #eadcc1; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
 
+
+.Card:hover {
+    background-color: #d3bda1;
 }
 
 .imageDog img {
     width: 80%;
-    height: auto; 
+    height: auto;
 }
 
 .linkStyle {
-    
     text-decoration: none;
     color: #333;
     font-weight: bold;

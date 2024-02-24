@@ -21,3 +21,25 @@
       align-items: center;
     }
     
+
+  
+    .backgroundImageDetail {
+      background-image: url('../src/assets/detalle.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+
+      .backgroundImageCreate {
+        background-image: url('../src/assets/detalle.jpg');
+          background-size: cover;
+          background-attachment: fixed;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }

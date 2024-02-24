@@ -5,7 +5,7 @@ const SearchBar = ({ onSearch, onSearchName }) => {
   const [name, setName] = useState('');
 
   const search = () => {
-    // Verificar si el campo de búsqueda de raza está vacío o contiene caracteres no válidos
+   
     if (name.trim() === '' || !/^[a-zA-Z\s]+$/.test(name.trim())) {
       alert('Por favor, ingrese un nombre de raza válido.');
       return;
@@ -28,9 +28,10 @@ const SearchBar = ({ onSearch, onSearchName }) => {
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Nombre de Raza"
+        className={styles.SearchInput}
       />
 
-      <button onClick={search}>Buscar perro</button>
+      <button onClick={search} className={styles.SearchButton}>Buscar perro</button>
 
      
      

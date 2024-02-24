@@ -8,7 +8,7 @@ function Navbar({ title }) {
     return (
         <div>  
             <h1>{title}</h1>
-            <Link to="/home"><button>home</button></Link>
+            <Link to="/home"><button>Back</button></Link>
           
         </div>
     );

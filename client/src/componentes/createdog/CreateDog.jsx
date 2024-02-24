@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTemperaments, createDog } from '../../actions/actions';
 import Navbar from '../Navbar';
 import Alert from '../Alert';
+import styles from './create.module.css';
+
 
 const CreateDog = () => {
   const dispatch = useDispatch();
@@ -76,8 +78,7 @@ const CreateDog = () => {
   };
 
 
-// Función para enviar los datos del formulario
-// Función para enviar los datos del formulario
+
 const submitDatos = async () => {
   // Validar que al menos un campo está presente antes de intentar crear el perro
   if (
@@ -124,8 +125,8 @@ const submitDatos = async () => {
 
 
   return (
-    <div>
-      <Navbar title={'Crear Dog'} />
+    <div className={styles.Card}>
+      <Navbar title={'Crear perro'} />
       {alerta && <Alert type={alerta.type} message={alerta.message} />}
 
       <div>

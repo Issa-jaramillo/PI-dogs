@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './dogs.module.css';
 
-const DogsCards = ({ id, nombre, temperamentos, pesomax, pesomin, imagen }) => {
+const DogsCards = ({ id, nombre, temperamentos, pesomax, pesomin}) => {
   const dogId = id;
   const [imagenUrl, setImagenUrl] = useState('');
 

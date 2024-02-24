@@ -4,7 +4,7 @@ import { getAllDogs, getTemperaments, filterRaza, getDogsByName } from '../../ac
 import InputBusqueda from '../busqueda/InputBusqueda.jsx';
 import Paginado from '../paginado/Paginado.jsx';
 import SearchBar from '../searchBar/SearchBar.jsx';
-// import CreateDog from "./CreateDog.jsx";
+
 import { Link } from "react-router-dom";
 import styles from './home.module.css';
 
@@ -90,20 +90,23 @@ function Homepage() {
 
   return (
     <div className=''>
-    <div className={styles.botonesPaginadoDispel}>
+    <div className={`${styles.contenedorPrincipal} ${styles.botonesPaginadoDispel}`}> 
+    <div className={styles.botonesPaginadoDispel} >
       <Link to="/createDog">Crear Perro</Link>
       <button onClick={prevPage} disabled={currentPage === 0}>Anterior</button>
       <button onClick={nextPage} disabled={endIndex >= displayedDogs.length}>Siguiente</button>
     </div>
 
   
-      <>
+      
+      <div className={styles.searchBarsContainer}>
+      <InputBusqueda temp={stateTemperaments} onSearch={handleSearch} setCurrentPage={setCurrentPage} /> 
         <SearchBar onSearch={handleSearchName} />
-        <InputBusqueda temp={stateTemperaments} onSearch={handleSearch} setCurrentPage={setCurrentPage} />
-        <Paginado arraydogs={dogsToDisplay} />
-  
-      </>
-   
+        </div>
+    
+        </div>
+      
+      <Paginado arraydogs={dogsToDisplay} />
   </div>
 );
 }

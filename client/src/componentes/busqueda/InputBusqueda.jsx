@@ -47,7 +47,7 @@ function InputBusqueda({ setCurrentPage, temp }) {
 
   return (
     <div className={styles.InputBusqueda}>
-      <select name="ordenar" onChange={handleOrderChange}>
+      <select className={styles.select} name="ordenar" onChange={handleOrderChange}>
         <option value="">Ordenar</option>
         <option value="asc">Peso Ascendente</option>
         <option value="des">Peso Descendente</option>
