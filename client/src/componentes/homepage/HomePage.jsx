@@ -4,7 +4,6 @@ import { getAllDogs, getTemperaments, filterRaza, getDogsByName } from '../../ac
 import InputBusqueda from '../busqueda/InputBusqueda.jsx';
 import Paginado from '../paginado/Paginado.jsx';
 import SearchBar from '../searchBar/SearchBar.jsx';
-
 import { Link } from "react-router-dom";
 import styles from './home.module.css';
 
@@ -21,7 +20,7 @@ function Homepage() {
   const filteredDogs = useSelector((state) => state.dogsFiltrados);
   const stateTemperaments = useSelector((state) => state.temperamentos);
 
-// despacHa acciones de redux  
+ 
   const dispatch = useDispatch();
 
 
@@ -57,7 +56,7 @@ function Homepage() {
  };
 
 
-//funcion para manejar la busqueda por nombre
+
   const handleSearchName = (nombreRaza) => {
    setCurrentPage(0);
     dispatch(getDogsByName(nombreRaza));

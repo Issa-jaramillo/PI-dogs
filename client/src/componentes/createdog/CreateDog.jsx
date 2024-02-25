@@ -77,7 +77,7 @@ const CreateDog = () => {
 
   const handleOnChange = (e) => {
     setDatos({ ...datos, [e.target.id]: e.target.value });
-    console.log(datos);
+  
     setError(validarCampos({ ...datos, [e.target.id]: e.target.value }));
   };
 
@@ -117,7 +117,7 @@ const CreateDog = () => {
       try {
         await dispatch(createDog(datos));
         window.alert('¡Perro creado correctamente!');
-        // Limpia los campos después de un envío exitoso
+        
         setDatos({
           Nombre: '',
           AlturaMin: 0,
@@ -141,7 +141,7 @@ const CreateDog = () => {
     <div className={styles.Card}>
 
       <div>
-      <h2>Detalles del perro</h2>
+      <h2>Crear perro</h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -158,7 +158,7 @@ const CreateDog = () => {
             <div>
               <label>Altura (cm): </label>
               <br />
-              <input type="number" id="AlturaMin" name="alturamin" placeholder="Alturamin" value={datos.AlturaMin} onChange={handleOnChange} />
+              <input type="number" id="AlturaMin" name="alturamin" placeholder="Altura minima" value={datos.AlturaMin} onChange={handleOnChange} />
               <input type="number" id="AlturaMax" name="alturamax" placeholder="Altura máxima" value={datos.AlturaMax} onChange={handleOnChange} />
             </div>
 

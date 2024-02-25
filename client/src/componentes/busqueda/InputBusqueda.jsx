@@ -16,25 +16,36 @@ function InputBusqueda({ setCurrentPage, temp }) {
 
 //estado local para el valor del input busqueda 
   const [search, setSearch] = useState('');
+//estado para la opcion de orden selecionada
+const [selectedOrder, setSelectedOrder] = useState('');
+
+const [selectedTemperament, setSelectedTemperament] = useState('')
+
 
 //determinar que datos mostrar segun si Hay filtros aplicados  
   const showraza = (razasfiltradas && razasfiltradas.length) ? razasfiltradas : razas;
   const showtemp = (tem && tem.length) ? tem : temp;
 
-//maneja cambios en el input de busqueda de temperamento  
-  const onSearchChangeTemp = (event) => {
-   // setCurrentPage(0);
-    setSearch(event.target.value);
-    dispatch(filteredTemperament(event.target.value));    
+  
+  const handleTemperamentChange = (event) => {
+    setCurrentPage(0);
+    const selectedTemp = event.target.value;
+
+    // Actualiza la opción de temperamento seleccionada
+    setSelectedTemperament(selectedTemp);
+
+    dispatch(filteredTemperament(selectedTemp));
   };
 
 
 
-//manejo de cambios en el selector de orden
+
   const handleOrderChange = (event) => {
     event.preventDefault();
     setCurrentPage(0);
     const selectedOption = event.target.value;
+    
+    setSelectedOrder(selectedOption)
 
 //despacHa la accion correspondiente segun la opcion seleccionada    
     if (selectedOption === 'asc' || selectedOption === 'des') {
@@ -47,16 +58,19 @@ function InputBusqueda({ setCurrentPage, temp }) {
     }
   };
 
+
   
   const Alldog = () => {
     setCurrentPage(0);
     dispatch(getAllDogs())
     setSearch('');
+    setSelectedOrder('');
+    setSelectedTemperament('');
   }
 
   return (
     <div className={styles.InputBusqueda}>
-      <select className={styles.select} name="ordenar" onChange={handleOrderChange}>
+      <select className={styles.select} name="ordenar" value={selectedOrder} onChange={handleOrderChange}>
         <option value="">Ordenar</option>
         <option value="asc">Peso Ascendente</option>
         <option value="des">Peso Descendente</option>
@@ -64,7 +78,7 @@ function InputBusqueda({ setCurrentPage, temp }) {
         <option value="za">Alfabético Descendente</option>
       </select>
 
-      <select name="temperamento" onChange={onSearchChangeTemp}>
+      <select name="temperamento" value={selectedTemperament} onChange={handleTemperamentChange}>
         <option value="">Temperamento</option>
         {showtemp &&
           showtemp.map((e) => (

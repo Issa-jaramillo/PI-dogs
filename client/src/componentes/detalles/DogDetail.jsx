@@ -47,13 +47,14 @@ function DetailPage() {
 
   return (
     <div > 
- 
+     
     <div className={`${styles.Card} ${styles.linkStyle}`}>
 
    
       {stateraza.map(e => (
         <div className="contenedor-detalle-dispel" key={e.ID}>
           <div>
+            <h2>Detalles del perro</h2>
             <h2>{e.Nombre}</h2>
             <h3>Altura: {e.Altura} Cm</h3>
             <h3>Peso: {e.Peso} Kg</h3>

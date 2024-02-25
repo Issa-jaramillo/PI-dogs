@@ -1,4 +1,4 @@
-// Definición de constantes para las acciones
+
 export const OBTENER_DOGS = 'OBTENER_DOGS';
 export const OBTENER_TEMPERAMENTOS = 'OBTENER_TEMPERAMENTOS';
 export const OBTENER_INFO_RAZA = 'OBTENER_INFO_RAZA';

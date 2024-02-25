@@ -9,7 +9,7 @@ import {
     CREAR_DOG
 } from '../actions/actionsTypes';
 
-// Definir el estado inicial
+
 const initialState = {
     dogsFiltrados: [],  
     todosLosDogs: [],

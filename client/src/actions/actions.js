@@ -14,7 +14,7 @@ import {
 
 const apiUrl = 'http://localhost:3001';
 
-// Obtener todos los perros
+
 export function getAllDogs() {
   return async function (dispatch) {
     try {
@@ -34,7 +34,7 @@ export function getAllDogs() {
   };
 }
 
-// Obtener perros por nombre
+
 export function getDogsByName(dogname) {
   return async function (dispatch) {
     try {
@@ -104,7 +104,7 @@ export function filterRaza() {
 }
 
 export function organizarPorPeso(opcionPeso) {
- // console.log('esta funcion a sido llamada' , opcionPeso);
+ 
   return { type: ORDENAR_PESO, payload: opcionPeso };
 }
 
