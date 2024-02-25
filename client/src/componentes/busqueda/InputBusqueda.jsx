@@ -38,12 +38,21 @@ function InputBusqueda({ setCurrentPage, temp }) {
 
 //despacHa la accion correspondiente segun la opcion seleccionada    
     if (selectedOption === 'asc' || selectedOption === 'des') {
+      setCurrentPage(0);
       dispatch(organizarPorPeso(selectedOption));
+
     } else {
+      setCurrentPage(0);
       dispatch(organizarAlfabeticamente(selectedOption));
     }
   };
+
   
+  const Alldog = () => {
+    setCurrentPage(0);
+    dispatch(getAllDogs())
+    setSearch('');
+  }
 
   return (
     <div className={styles.InputBusqueda}>
@@ -64,6 +73,10 @@ function InputBusqueda({ setCurrentPage, temp }) {
             </option>
           ))}
       </select>
+
+   <button onClick={Alldog}>Perros</button>
+  
+
     </div>
   );
 }

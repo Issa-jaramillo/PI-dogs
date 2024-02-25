@@ -92,6 +92,7 @@ function Homepage() {
     <div className=''>
     <div className={`${styles.contenedorPrincipal} ${styles.botonesPaginadoDispel}`}> 
     <div className={styles.botonesPaginadoDispel} >
+      <Link to='/'>🔒</Link>
       <Link to="/createDog">Crear Perro</Link>
       <button onClick={prevPage} disabled={currentPage === 0}>Anterior</button>
       <button onClick={nextPage} disabled={endIndex >= displayedDogs.length}>Siguiente</button>

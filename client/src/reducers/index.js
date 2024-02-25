@@ -11,12 +11,12 @@ import {
 
 // Definir el estado inicial
 const initialState = {
-    dogsFiltrados: [],  // Renombrado para mayor claridad
+    dogsFiltrados: [],  
     todosLosDogs: [],
     temperamentos: [],
     temperamentosFiltrados: [],
     detalleRaza: [],
-   // dogsActuales: [],
+   
 };
 
 function rootReducer(state = initialState, action) {
@@ -95,8 +95,6 @@ function rootReducer(state = initialState, action) {
               
                   return action.payload === 'az' ? nombreA.localeCompare(nombreB) : nombreB.localeCompare(nombreA);
                 });
-              console.log(nuevoOrdenAlfabetico);
-              console.log(state);
                 return {
                   ...state,
                   todosLosDogs: nuevoOrdenAlfabetico,
@@ -106,7 +104,7 @@ function rootReducer(state = initialState, action) {
 
 
             case CREAR_DOG:
-                // Acción para crear una nueva raza de perro
+          
                 const nuevoPerro = action.payload;  
             
                 return {

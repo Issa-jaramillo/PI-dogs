@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTemperaments, createDog } from '../../actions/actions';
-import Navbar from '../Navbar';
+import Navbar from '../navBar/Navbar';
 import styles from './create.module.css';
 
 const CreateDog = () => {
@@ -139,9 +139,9 @@ const CreateDog = () => {
 
   return (
     <div className={styles.Card}>
-      <Navbar title={'Crear perro'} />
 
       <div>
+      <h2>Detalles del perro</h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -151,8 +151,8 @@ const CreateDog = () => {
         >
           <div>
             <div>
-              <label htmlFor="nombre">Nombre de la raza:</label>
-              <input type="text" id="Nombre" name="nombre" placeholder="Nombre de la raza" value={datos.Nombre} onChange={handleOnChange} />
+              <label htmlFor="nombre">Nombre del perro:</label>
+              <input type="text" id="Nombre" name="nombre" placeholder="Nombre del perro" value={datos.Nombre} onChange={handleOnChange} />
             </div>
 
             <div>
@@ -200,6 +200,7 @@ const CreateDog = () => {
               <input type="submit" value="Enviar" className="boton-createdog" />
             </div>
           </div>
+          <Navbar />
         </form>
       </div>
     </div>

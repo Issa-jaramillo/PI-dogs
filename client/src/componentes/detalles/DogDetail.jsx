@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";  
 import { getDetail } from "../../actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from '../Navbar';
+import NavBar from '../navBar/Navbar';
 
 import styles from './detail.module.css';
 

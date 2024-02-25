@@ -1,0 +1,15 @@
+/* En tu archivo nav.module.css */
+.backButton {
+    font-size: 24px; /* Ajusta el tamaño según sea necesario */
+    width: 150px; /* Ajusta el ancho según sea necesario */
+    padding: 10px; /* Ajusta el relleno según sea necesario */
+    background-color: #4CAF50; /* Cambia el color de fondo al verde, ajusta según sea necesario */
+    color: white; /* Cambia el color del texto al blanco, ajusta según sea necesario */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.backButton:hover {
+    background-color: #45a049; /* Cambia el color de fondo al verde más oscuro cuando se toca */
+}
