@@ -11,8 +11,6 @@ function App() {
   return (
 
     < >
-      
-   
       <Routes >
         <Route path="/" element={<div className={styles.backgroundImageInicio}><Inicio/></div>} />
         <Route path="/Home" element={<div className={styles.backgroundImageHome}><HomePage/></div>} />
