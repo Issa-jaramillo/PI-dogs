@@ -7,7 +7,8 @@ import {
   FILTRAR_TEMPERAMENTO,
   ORDENAR_PESO,
   CREAR_DOG,
-  ORDENAR_ALFABETICO
+  ORDENAR_ALFABETICO,
+  FILTRAR_POR_ORIGEN
 } from './actionsTypes';
 
 
@@ -123,4 +124,15 @@ export function createDog(attributesDog) {
 
 export function organizarAlfabeticamente(optionAlfab) {
   return { type:ORDENAR_ALFABETICO, payload: optionAlfab };
+}
+
+
+
+export const filtrarOrigen = (origin) => {
+  console.log( origin);
+  return {
+
+  type: FILTRAR_POR_ORIGEN,
+  payload: origin,
+  };
 }

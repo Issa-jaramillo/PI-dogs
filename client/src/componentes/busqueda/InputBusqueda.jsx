@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllDogs, filteredTemperament, organizarPorPeso, organizarAlfabeticamente } from '../../actions/actions';
+import { getAllDogs, filteredTemperament, organizarPorPeso, organizarAlfabeticamente, filtrarOrigen} from '../../actions/actions';
 import styles from './input.module.css';
 
 
@@ -20,6 +20,7 @@ function InputBusqueda({ setCurrentPage, temp }) {
 const [selectedOrder, setSelectedOrder] = useState('');
 
 const [selectedTemperament, setSelectedTemperament] = useState('')
+const [selectedOrigin, setSelectedOrigin] = useState('');
 
 
 //determinar que datos mostrar segun si Hay filtros aplicados  
@@ -58,7 +59,10 @@ const [selectedTemperament, setSelectedTemperament] = useState('')
     }
   };
 
-
+  const ordenOrigen =() => {
+   
+  }
+  
   
   const Alldog = () => {
     setCurrentPage(0);
@@ -66,6 +70,7 @@ const [selectedTemperament, setSelectedTemperament] = useState('')
     setSearch('');
     setSelectedOrder('');
     setSelectedTemperament('');
+    setSelectedOrigin('');
   }
 
   return (
@@ -86,7 +91,15 @@ const [selectedTemperament, setSelectedTemperament] = useState('')
               {e.Nombre}
             </option>
           ))}
+
+
       </select>
+      <select name="origen" value={selectedOrigin} onChange={handleFilterByOrigin}>
+      <option value="">Origen</option>
+     <option value="API">API</option>
+     <option value="BASE DE DATOS">Base de Datos</option>
+    </select>
+
 
    <button onClick={Alldog}>Perros</button>
   

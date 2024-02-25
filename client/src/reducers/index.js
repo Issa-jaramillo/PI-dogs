@@ -6,7 +6,8 @@ import {
     FILTRAR_TEMPERAMENTO,
     ORDENAR_PESO,
     ORDENAR_ALFABETICO,
-    CREAR_DOG
+    CREAR_DOG,
+    FILTRAR_POR_ORIGEN
 } from '../actions/actionsTypes';
 
 
@@ -16,6 +17,7 @@ const initialState = {
     temperamentos: [],
     temperamentosFiltrados: [],
     detalleRaza: [],
+    
    
 };
 
@@ -109,14 +111,32 @@ function rootReducer(state = initialState, action) {
             
                 return {
                     ...state,
-                    todosLosDogs: [...state.todosLosDogs, nuevoPerro],  // Agregar el nuevo perro a la lista de todos los perros
-                    dogsFiltrados: [],  // Reiniciar la lista filtrada, ya que se ha agregado un nuevo perro
+                    todosLosDogs: [...state.todosLosDogs, nuevoPerro],  
+                    dogsFiltrados: [],  
                 };
-            
 
+                case FILTRAR_POR_ORIGEN:
+                    const filteredDogs = state.todosLosDogs.filter(dog => {
+                      if (action.payload === 'API') {
+                        return typeof dog.ID === 'number';
+                      } else if (action.payload === 'BASE DE DATOS') {
+                        return typeof dog.ID !== 'number';
+                      } else {
+                        return true;
+                      }
+                    });
+                  
+                    return {
+                      ...state,
+                      todosLosDogs: filteredDogs,
+                    };
+                  
         default:
             return state;
     }
 }
+
+
+  
 
 export default rootReducer;

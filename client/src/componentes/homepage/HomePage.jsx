@@ -15,7 +15,6 @@ function Homepage() {
  const [currentPage, setCurrentPage] = useState(0);
  const [search, setSearch] = useState('');
 
-//obtener datos del estado global con useSelector 
   const allDogs = useSelector((state) => state.todosLosDogs);
   const filteredDogs = useSelector((state) => state.dogsFiltrados);
   const stateTemperaments = useSelector((state) => state.temperamentos);
@@ -41,8 +40,7 @@ function Homepage() {
     fetchData();
   }, [dispatch]);
 
-
-//funciones para navegar a la siguiente y anterior pagina  
+  
   const nextPage = () => {
     if (endIndex < displayedDogs.length) {
      setCurrentPage(currentPage + 1);
