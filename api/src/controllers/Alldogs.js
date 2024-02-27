@@ -1,8 +1,5 @@
 require('dotenv').config();
-
 const { API_KEY } = process.env;
-
-
 const { Dog, Temperament } = require('../db');
 const axios = require('axios');
 
@@ -21,16 +18,7 @@ const allDogs = async () => {
                 },
             },
         });
-      // mapea datos de la base local 
-        const dogsDBtemp = dogsDB.map((dog) => ({
-            ID: dog.ID,
-            Nombre: dog.Nombre,
-            Altura: `${dog.AlturaMin} - ${dog.AlturaMax}`,
-            Peso: `${dog.PesoMin} - ${dog.PesoMax}`,
-            Vida: `${dog.Vidamin} - ${dog.Vidamax}`,
-            Temperamento: dog.Temperamentos.map((e) => e.Nombre).toString(),
-            Imagen: dog.Imagen,
-        }));
+  
         
         const dogsApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
         
@@ -45,6 +33,18 @@ const allDogs = async () => {
                 Imagen: `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`,
             }))
             : [];
+
+
+            // mapeo datos de la base local 
+            const dogsDBtemp = dogsDB.map((dog) => ({
+            ID: dog.ID,
+            Nombre: dog.Nombre,
+            Altura: `${dog.AlturaMin} - ${dog.AlturaMax}`,
+            Peso: `${dog.PesoMin} - ${dog.PesoMax}`,
+            Vida: `${dog.Vidamin} - ${dog.Vidamax}`,
+            Temperamento: dog.Temperamentos.map((e) => e.Nombre).toString(),
+            Imagen: dog.Imagen,
+        }));
         // combina datos de la base d datos local y la de la API
         const dogsAll = dogsApiData.concat(dogsDBtemp);
        
