@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllDogs, filteredTemperament, organizarPorPeso, organizarAlfabeticamente, filtrarOrigen} from '../../actions/actions';
 import styles from './input.module.css';
 
-
 function InputBusqueda({ setCurrentPage, temp }) {
   
   const dispatch = useDispatch();
 
 //otengo los datos del estado de redux usando useSelector   
-  const razas = useSelector((state) => state.todosLosDogs);
-  const razasfiltradas = useSelector((state) => state.dogsFiltrados);
+  const Dogs = useSelector((state) => state.dogs);
+ 
   const tem = useSelector((state) => state.temperamentosFiltrados);
 
 
@@ -24,22 +23,36 @@ const [selectedOrigin, setSelectedOrigin] = useState('');
 
 
 //determinar que datos mostrar segun si Hay filtros aplicados  
-  const showraza = (razasfiltradas && razasfiltradas.length) ? razasfiltradas : razas;
+  const showraza = (Dogs && Dogs.length) ? Dogs : Dogs;
   const showtemp = (tem && tem.length) ? tem : temp;
-
   
+  console.log("Filtered Dogs (for rendering):", showraza);
+  
+  
+  
+
+
+
   const handleTemperamentChange = (event) => {
     setCurrentPage(0);
     const selectedTemp = event.target.value;
-
-    // Actualiza la opción de temperamento seleccionada
     setSelectedTemperament(selectedTemp);
 
     dispatch(filteredTemperament(selectedTemp));
   };
 
 
+const handleOriginChange = (event) => {
 
+    const selectedValue = event.target.value;
+
+    setSelectedOrigin(selectedValue)
+    dispatch(filtrarOrigen(selectedValue))
+    
+    
+  };
+  
+  
 
   const handleOrderChange = (event) => {
     event.preventDefault();
@@ -59,10 +72,6 @@ const [selectedOrigin, setSelectedOrigin] = useState('');
     }
   };
 
-  const ordenOrigen =() => {
-   
-  }
-  
   
   const Alldog = () => {
     setCurrentPage(0);
@@ -70,8 +79,11 @@ const [selectedOrigin, setSelectedOrigin] = useState('');
     setSearch('');
     setSelectedOrder('');
     setSelectedTemperament('');
-    setSelectedOrigin('');
+   setSelectedOrigin('')
+
+ 
   }
+  
 
   return (
     <div className={styles.InputBusqueda}>
@@ -94,10 +106,10 @@ const [selectedOrigin, setSelectedOrigin] = useState('');
 
 
       </select>
-      <select name="origen" value={selectedOrigin} onChange={handleFilterByOrigin}>
+      <select name="origen"  value={selectedOrigin} onChange={handleOriginChange}>
       <option value="">Origen</option>
      <option value="API">API</option>
-     <option value="BASE DE DATOS">Base de Datos</option>
+     <option value="BASEDEDATOS">Base de Datos</option>
     </select>
 
 

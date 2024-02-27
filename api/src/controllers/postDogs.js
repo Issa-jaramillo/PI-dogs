@@ -2,8 +2,22 @@ const { Dog, Temperament } = require('../db');
 
 const postDogs = async (req, res) => {
   try {
-    const { Nombre, AlturaMax, AlturaMin, PesoMax, PesoMin, Vidamax, Vidamin, Imagen, Temperamentos } = req.body;
-  
+    const {
+      Nombre,
+      AlturaMax,
+      AlturaMin,
+      PesoMax,
+      PesoMin,
+      Vidamax,
+      Vidamin,
+      Imagen,  // Puedes omitir Imagen de la destructuración si ya está presente en la solicitud
+      Temperamentos,
+    } = req.body;
+
+    // Asigna la imagen predeterminada si no se proporciona una
+    const imagenPredeterminada = 'https://cdn2.thedogapi.com/images/B12BnxcVQ.jpg';
+    const imagenAUsar = Imagen || imagenPredeterminada;
+
     const newDog = await Dog.create({
       Nombre,
       AlturaMax,
@@ -12,7 +26,7 @@ const postDogs = async (req, res) => {
       PesoMin,
       Vidamax,
       Vidamin,
-      Imagen,
+      Imagen: imagenAUsar,  // Usa la imagen predeterminada si no se proporciona una
     });
 
     if (Array.isArray(Temperamentos) && Temperamentos.length > 0) {
@@ -44,7 +58,6 @@ const postDogs = async (req, res) => {
       res.status(400).json({ error: 'Debe proporcionar al menos un temperamento' });
     }
   } catch (error) {
-
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };

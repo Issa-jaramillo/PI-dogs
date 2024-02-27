@@ -42,7 +42,7 @@ const allDogs = async () => {
                 Peso: dog.weight ? `${dog.weight.metric.split(' - ')[0]} - ${dog.weight.metric.split(' - ')[1]}` : 'N/A',
                 Temperamento: dog.temperament,
                 Vida: dog.life_span ? (dog.life_span.includes(' - ') ? dog.life_span : 'N/A') : 'N/A',
-                Imagen: dog.reference_image_id, 
+                Imagen: `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`,
             }))
             : [];
         // combina datos de la base d datos local y la de la API

@@ -8,7 +8,7 @@ import {
   ORDENAR_PESO,
   CREAR_DOG,
   ORDENAR_ALFABETICO,
-  FILTRAR_POR_ORIGEN
+  FILTRAR_ORIGEN
 } from './actionsTypes';
 
 
@@ -100,9 +100,9 @@ export function filteredTemperament(temperamento) {
   return { type: FILTRAR_TEMPERAMENTO, payload: temperamento };
 }
 
-export function filterRaza() {
-  return { type: FILTRAR_RAZA };
-}
+// export function filterRaza() {
+//   return { type: FILTRAR_RAZA };
+// }
 
 export function organizarPorPeso(opcionPeso) {
  
@@ -128,11 +128,10 @@ export function organizarAlfabeticamente(optionAlfab) {
 
 
 
-export const filtrarOrigen = (origin) => {
-  console.log( origin);
+export const filtrarOrigen = (origen) => {
+  console.log( origen);
   return {
-
-  type: FILTRAR_POR_ORIGEN,
-  payload: origin,
+  type: FILTRAR_ORIGEN,
+  payload: origen,
   };
 }

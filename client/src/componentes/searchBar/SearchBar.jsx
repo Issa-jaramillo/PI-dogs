@@ -1,9 +1,13 @@
 import { useState } from "react";
 import styles from  "./search.module.css";
 
-const SearchBar = ({ onSearch, onSearchName }) => {
+
+const SearchBar = ({ onSearch, allDogs}) => {
   const [name, setName] = useState('');
 
+
+
+  
   const search = () => {
    
     if (name.trim() === '' || !/^[a-zA-Z\s]+$/.test(name.trim())) {

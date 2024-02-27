@@ -7,13 +7,12 @@ import {
     ORDENAR_PESO,
     ORDENAR_ALFABETICO,
     CREAR_DOG,
-    FILTRAR_POR_ORIGEN
+    FILTRAR_ORIGEN
 } from '../actions/actionsTypes';
 
 
 const initialState = {
-    dogsFiltrados: [],  
-    todosLosDogs: [],
+    dogs:[],
     temperamentos: [],
     temperamentosFiltrados: [],
     detalleRaza: [],
@@ -27,7 +26,7 @@ function rootReducer(state = initialState, action) {
             // Acción para obtener todas las razas de perros
             return {
                 ...state,
-                todosLosDogs: action.payload,
+                dogs: action.payload,
             };
 
         case OBTENER_TEMPERAMENTOS:
@@ -46,7 +45,7 @@ function rootReducer(state = initialState, action) {
 
         case FILTRAR_RAZA:
             // Acción para filtrar temperamentos únicos
-            const temperamentosUnicos = [...new Set(state.todosLosDogs.map(e => e.Temperamento).flat())];
+            const temperamentosUnicos = [...new Set(state.dogs.map(e => e.Temperamento).flat())];
             const temperamentosFiltrados = state.temperamentos.filter(e => temperamentosUnicos.includes(e.Nombre));
 
             return {
@@ -55,7 +54,7 @@ function rootReducer(state = initialState, action) {
             };
    
             case FILTRAR_TEMPERAMENTO:
-                const razasFiltradasPorTemp = state.todosLosDogs.filter((e) => {
+                const razasFiltradasPorTemp = state.dogs.filter((e) => {
                     if (Array.isArray(e.Temperamento)) {
                         let temp = e.Temperamento.map(e => e.Nombre);
                         return temp.includes(action.payload);
@@ -67,14 +66,14 @@ function rootReducer(state = initialState, action) {
           
                 return {
                     ...state,
-                    todosLosDogs: razasFiltradasPorTemp,
+                    dogs: razasFiltradasPorTemp,
             };
             
 
 
             
             case ORDENAR_PESO:
-            const nuevoOrden = state.todosLosDogs.slice().sort((a, b) => {
+            const nuevoOrden = state.dogs.slice().sort((a, b) => {
             const pesoA = parseInt(a.Peso.split(' - ')[0]);
              const pesoB = parseInt(b.Peso.split(' - ')[0]);
             return action.payload === 'asc' ? pesoA - pesoB : pesoB - pesoA;
@@ -82,7 +81,7 @@ function rootReducer(state = initialState, action) {
 
              return {
                 ...state,
-             todosLosDogs: nuevoOrden,
+             dogs: nuevoOrden,
              };
             
               
@@ -91,7 +90,7 @@ function rootReducer(state = initialState, action) {
             
              case ORDENAR_ALFABETICO:
               
-                const nuevoOrdenAlfabetico = state.todosLosDogs.slice().sort((a, b) => {
+                const nuevoOrdenAlfabetico = state.dogs.slice().sort((a, b) => {
                   const nombreA = a.Nombre || '';
                   const nombreB = b.Nombre || '';
               
@@ -99,7 +98,7 @@ function rootReducer(state = initialState, action) {
                 });
                 return {
                   ...state,
-                  todosLosDogs: nuevoOrdenAlfabetico,
+                  dogs: nuevoOrdenAlfabetico,
                 };
            
               
@@ -111,25 +110,29 @@ function rootReducer(state = initialState, action) {
             
                 return {
                     ...state,
-                    todosLosDogs: [...state.todosLosDogs, nuevoPerro],  
-                    dogsFiltrados: [],  
+                    dogs: [...state.dogs, nuevoPerro],  
+                   // dogs: [],  
                 };
 
-                case FILTRAR_POR_ORIGEN:
-                    const filteredDogs = state.todosLosDogs.filter(dog => {
+                case FILTRAR_ORIGEN:
+                    console.log("Action Payload (FILTRAR_ORIGEN):", action.payload);
+                    const filteredDogs = state.dogs.filter(dog => {
+                        
                       if (action.payload === 'API') {
                         return typeof dog.ID === 'number';
-                      } else if (action.payload === 'BASE DE DATOS') {
+                      } else if (action.payload === 'BASEDEDATOS') {
                         return typeof dog.ID !== 'number';
                       } else {
                         return true;
                       }
                     });
-                  
+
+                    console.log(filteredDogs);
                     return {
                       ...state,
-                      todosLosDogs: filteredDogs,
+                      dogs: filteredDogs,
                     };
+                    
                   
         default:
             return state;

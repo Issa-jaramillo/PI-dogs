@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTemperaments, createDog } from '../../actions/actions';
 import Navbar from '../navBar/Navbar';
 import styles from './create.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const CreateDog = () => {
   const dispatch = useDispatch();
+  const navegate = useNavigate();
   const stateTem = useSelector((state) => state.temperamentos);
 
   useEffect(() => {
@@ -68,10 +70,6 @@ const CreateDog = () => {
       error.Vidamax = 'Debe contener un tiempo de vida máximo válido';
     }
 
-    if (!e.Imagen.trim()) {
-      error.Imagen = 'Debe contener una URL de imagen';
-    }
-
     return error;
   };
 
@@ -102,7 +100,6 @@ const CreateDog = () => {
       datos.PesoMax === 0 &&
       datos.Vidamin === 0 &&
       datos.Vidamax === 0 &&
-      datos.Imagen === '' &&
       datos.Temperamentos.length === 0
     ) {
       window.alert('Ingresa al menos un dato para crear el perro.');
@@ -116,7 +113,7 @@ const CreateDog = () => {
     } else {
       try {
         await dispatch(createDog(datos));
-        window.alert('¡Perro creado correctamente!');
+        navegate('/home')
         
         setDatos({
           Nombre: '',
