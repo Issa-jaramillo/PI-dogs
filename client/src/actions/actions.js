@@ -129,7 +129,7 @@ export function organizarAlfabeticamente(optionAlfab) {
 
 
 export const filtrarOrigen = (origen) => {
-  console.log( origen);
+  //console.log( origen);
   return {
   type: FILTRAR_ORIGEN,
   payload: origen,

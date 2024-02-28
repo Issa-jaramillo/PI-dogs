@@ -18,6 +18,7 @@ function Homepage() {
   const [search, setSearch] = useState('');
 
   const allDogs = useSelector((state) => state.dogs);
+  console.log(allDogs);
   const stateTemperaments = useSelector((state) => state.temperamentos);
   const dispatch = useDispatch();
 

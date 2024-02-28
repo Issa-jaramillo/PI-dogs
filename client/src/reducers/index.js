@@ -12,11 +12,15 @@ import {
 
 
 const initialState = {
-    dogs:[],
+    
     temperamentos: [],
     temperamentosFiltrados: [],
     detalleRaza: [],
-    
+    dogsDisponibles: [],
+    dogs:[],
+    // dogsApi: [],
+    // dogsBD: []
+
    
 };
 
@@ -26,6 +30,7 @@ function rootReducer(state = initialState, action) {
             // Acción para obtener todas las razas de perros
             return {
                 ...state,
+                dogsDisponibles: action.payload,
                 dogs: action.payload,
             };
 
@@ -43,18 +48,19 @@ function rootReducer(state = initialState, action) {
                 detalleRaza: action.payload || [], // Si no hay datos, establecer como un array vacío
             };
 
-        case FILTRAR_RAZA:
-            // Acción para filtrar temperamentos únicos
-            const temperamentosUnicos = [...new Set(state.dogs.map(e => e.Temperamento).flat())];
-            const temperamentosFiltrados = state.temperamentos.filter(e => temperamentosUnicos.includes(e.Nombre));
+        // case FILTRAR_RAZA:
+        //     // Acción para filtrar temperamentos únicos
+        //     const temperamentosUnicos = [...new Set(state.dogsDisponibles.map(e => e.Temperamento).flat())];
+        //     const temperamentosFiltrados = state.temperamentos.filter(e => temperamentosUnicos.includes(e.Nombre));
 
-            return {
-                ...state,
-                temperamentosFiltrados,
-            };
+        //     return {
+        //         ...state,
+        //         temperamentosFiltrados,
+        //     };
    
             case FILTRAR_TEMPERAMENTO:
-                const razasFiltradasPorTemp = state.dogs.filter((e) => {
+                console.log('estado del perro',state.dogsDisponibles);
+                const razasFiltradasPorTemp = state.dogsDisponibles.filter((e) => {
                     if (Array.isArray(e.Temperamento)) {
                         let temp = e.Temperamento.map(e => e.Nombre);
                         return temp.includes(action.payload);
@@ -63,7 +69,7 @@ function rootReducer(state = initialState, action) {
                     }
                     return false;
                 });
-          
+             console.log('razas filtradas por temperamentos',razasFiltradasPorTemp);
                 return {
                     ...state,
                     dogs: razasFiltradasPorTemp,
@@ -73,7 +79,7 @@ function rootReducer(state = initialState, action) {
 
             
             case ORDENAR_PESO:
-            const nuevoOrden = state.dogs.slice().sort((a, b) => {
+            const nuevoOrden = state.dogsDisponibles.slice().sort((a, b) => {
             const pesoA = parseInt(a.Peso.split(' - ')[0]);
              const pesoB = parseInt(b.Peso.split(' - ')[0]);
             return action.payload === 'asc' ? pesoA - pesoB : pesoB - pesoA;
@@ -90,7 +96,7 @@ function rootReducer(state = initialState, action) {
             
              case ORDENAR_ALFABETICO:
               
-                const nuevoOrdenAlfabetico = state.dogs.slice().sort((a, b) => {
+                const nuevoOrdenAlfabetico = state.dogsDisponibles.slice().sort((a, b) => {
                   const nombreA = a.Nombre || '';
                   const nombreB = b.Nombre || '';
               
@@ -110,13 +116,14 @@ function rootReducer(state = initialState, action) {
             
                 return {
                     ...state,
-                    dogs: [...state.dogs, nuevoPerro],  
-                   // dogs: [],  
+                    dogsDisponibles: [...state.dogsDisponibles, nuevoPerro], 
+                    dogs: [...state.dogs, nuevoPerro] 
+                  
                 };
 
                 case FILTRAR_ORIGEN:
-                    console.log("Action Payload (FILTRAR_ORIGEN):", action.payload);
-                    const filteredDogs = state.dogs.filter(dog => {
+                   console.log("dogs disponible", state.dogsDisponibles);
+                    const filteredDogs = state.dogsDisponibles.filter(dog => {
                         
                       if (action.payload === 'API') {
                         return typeof dog.ID === 'number';
@@ -127,7 +134,7 @@ function rootReducer(state = initialState, action) {
                       }
                     });
 
-                    console.log(filteredDogs);
+                    console.log('filtrar por origen',filteredDogs);
                     return {
                       ...state,
                       dogs: filteredDogs,

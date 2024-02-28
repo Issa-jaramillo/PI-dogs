@@ -26,7 +26,7 @@ const [selectedOrigin, setSelectedOrigin] = useState('');
   const showraza = (Dogs && Dogs.length) ? Dogs : Dogs;
   const showtemp = (tem && tem.length) ? tem : temp;
   
-  console.log("Filtered Dogs (for rendering):", showraza);
+  //console.log("Filtered Dogs (for rendering):", showraza);
   
   
   
@@ -39,6 +39,7 @@ const [selectedOrigin, setSelectedOrigin] = useState('');
     setSelectedTemperament(selectedTemp);
 
     dispatch(filteredTemperament(selectedTemp));
+    
   };
 
 
